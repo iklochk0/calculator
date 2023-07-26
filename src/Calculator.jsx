@@ -9,14 +9,19 @@ const Calculator = () => {
 
   const handleCalculate = () => {
     try {
-      setInput(eval(input).toString());
+        setInput(eval(input).toString());
     } catch (error) {
-      setInput('Error');
+        setInput('Error');
+        console.log(error);
     }
   };
 
   const handleClear = () => {
     setInput('');
+  };
+
+  const handleDelete = () => {
+    setInput((prevInput) => prevInput.slice(0, -1));
   };
 
   return (
@@ -38,7 +43,9 @@ const Calculator = () => {
         <button onClick={() => handleButtonClick('0')}>0</button>
         <button onClick={() => handleButtonClick('.')}>.</button>
         <button onClick={() => handleButtonClick('/')}>/</button>
+        <button onClick={handleDelete}>DEL</button>
         <button onClick={handleClear}>C</button>
+        <button onClick={() => handleButtonClick('^')}>^</button>
         <button onClick={handleCalculate}>=</button>
       </div>
     </div>
